@@ -1,43 +1,77 @@
-Simple Java Blockchain Implementation
+# Simple Blockchain in Java
 
-This is a basic Java implementation of a blockchain that demonstrates the core concepts of blockchain technology.
-Overview
+This is a basic implementation of a blockchain in Java. It demonstrates key blockchain concepts such as blocks, hashing, mining (proof-of-work), and chain validation.
 
-The project consists of three main classes:
+## 📦 Project Structure
 
-    Main - Demonstrates the creation of a simple blockchain with 3 blocks
+The project contains the following Java classes:
 
-    Block - Represents a single block in the blockchain
+- `Main.java`: Contains the main method that creates and mines the blockchain.
+- `Block.java`: Defines the `Block` class, including hash calculation and mining logic.
+- `StringUtil.java`: Provides a utility function to hash strings using SHA-256.
 
-    StringUtil - Provides SHA-256 hashing functionality
+## 🧠 How It Works
 
-Features
+Each `Block` contains:
+- `data`: The content stored in the block.
+- `previousHash`: The hash of the previous block.
+- `hash`: The current block's hash.
+- `timestamp`: When the block was created.
+- `nonce`: Used in the mining process.
 
-    Block creation with timestamp
+### Mining
 
-    Cryptographic hashing using SHA-256
+Mining is the process of finding a hash that begins with a certain number of leading zeros (defined by `difficulty`). This simulates the proof-of-work concept.
 
-    Linking blocks through previous hash references
+### Blockchain Validation
 
-    Simple proof-of-work system (not included in this basic version)
+The `isChainValid()` method checks that:
+- Each block's hash is correctly calculated.
+- Each block's `previousHash` matches the previous block’s hash.
+- Each block has been properly mined according to the set `difficulty`.
 
-How to Run
+## ▶️ How to Run
 
-    Make sure you have Java installed on your system
+1. **Clone or download the repository.**
 
-    Compile all Java files:
+2. **Make sure you have Java installed.**  
+   This project requires **Java 8 or above**.
 
-javac *.java
+3. **Compile the files** (you can use your IDE or the command line):
 
-Run the Main class:
+```bash
+javac Main.java Block.java StringUtil.java
 
-    java Main
+    Run the program:
 
-Expected Output
+java Main
 
-The program will output the hash values of three blocks in the chain, demonstrating how each block is cryptographically linked to the previous one.
-Dependencies
+You should see the program mine three blocks and output the entire blockchain in JSON format, along with validation messages.
+📚 Dependencies
 
-    Java SE (Standard Edition)
+This project uses Google Gson for pretty-printing JSON. You need to include the Gson JAR in your classpath.
+Add Gson to Classpath (Command Line):
 
-    No external libraries required
+Download the Gson JAR and include it when compiling and running:
+
+javac -cp gson-2.8.9.jar Main.java Block.java StringUtil.java
+java -cp .:gson-2.8.9.jar Main
+
+(Replace : with ; on Windows.)
+🛠 Features
+
+    Simple proof-of-work algorithm (mining)
+
+    Blockchain integrity check
+
+    SHA-256 hashing
+
+    JSON output of the blockchain
+
+🚀 Future Improvements
+
+    Add transaction and wallet classes
+
+    Introduce digital signatures (public/private key cryptography)
+
+    Peer-to-peer networking
